@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :bands, dependent: :delete_all
+  has_many :bands, foreign_key: 'manager_id'
 
   validates_presence_of :name
   validates_presence_of :password_digest
