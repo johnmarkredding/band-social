@@ -13,9 +13,9 @@
 ActiveRecord::Schema.define(version: 2018_12_27_040935) do
 
   create_table "bands", force: :cascade do |t|
+    t.integer "manager_id"
     t.string "name"
     t.text "description"
-    t.integer "manager_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["manager_id"], name: "index_bands_on_manager_id"
