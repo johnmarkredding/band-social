@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  has_many :bands, foreign_key: 'manager_id'
+  has_many :managed_bands, class_name: "Band", foreign_key: 'manager_id'
+  has_many :memberships
+  has_many :bands, through: :memberships, class_name: 'User', foreign_key: 'member_id'
 
   validates_presence_of :name
   validates_presence_of :password_digest
@@ -11,4 +13,5 @@ class User < ApplicationRecord
   def admin?
     self.role == "admin"
   end
+
 end

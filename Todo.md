@@ -6,12 +6,12 @@
   - ~~Sign Up~~
   - ~~Login~~
 - User
-  - Create Band
+  - ~~Create Band~~
 - Band
-  - Manager_id
-  - Description
+  - ~~Manager_id~~
+  - ~~Description~~
   - Member list
-- Member
+- Membership
   - Image
   - Bio
   - Instruments

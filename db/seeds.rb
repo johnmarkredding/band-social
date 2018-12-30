@@ -1,9 +1,7 @@
 User.destroy_all
 Band.destroy_all
 
-user = User.new(name: 'John', username: "johnny", password: "nice")
-user.save
-user = User.find_by_name('John')
+user = User.create(name: 'John', username: "johnny", password: "nice")
 
 user_band = Band.new(name: 'Band #1', description: 'My first band', manager_id: user.id)
 

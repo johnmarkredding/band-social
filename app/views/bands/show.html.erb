@@ -1,7 +1,12 @@
 <h1><%= @requested_band.name %></h1>
+<h2>Manager: <%= link_to @requested_band.manager.name, user_path(@requested_band.manager) %></h2>
 <h2>Members</h2>
 <ul>
 <% @members.each do |member| %>
-  <li><p><%= link_to member.name, user_path(member) %></p></li>
+  <li><p><!%= link_to member.name, user_path(member) %><%= member %></p></li>
 <% end %>
 </ul>
+<p><%= link_to "Edit Band", edit_band_path(@requested_band) %></p>
+<%= form_with url: band_path(@requested_band), method: "delete", local: true do |f| %>
+  <%= f.submit "Delete Band"%>
+<% end %>
