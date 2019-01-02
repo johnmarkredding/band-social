@@ -1,0 +1,20 @@
+<h1><%= "#{@conversation.sender.username} & #{@conversation.receiver.username}" %></h1>
+
+<section>
+
+<ul class="messages">
+  <% @messages.each do |message| %>
+    <li class="message <%= message.user == @logged_in_user ? "message-sent": "message-received" %>">
+      <h4 class="message-heading"><%= link_to message.user.full_handle, user_path(message.user) %></h4>
+      <%= message.body %>
+    </li>
+  <% end %>
+</ul>
+<%= form_with url: conversation_messages_path(@conversation), method: 'POST', local: true do |f| %>
+  <div>
+    <h4><%= f.label :body, "New Message" %></h4>
+    <%= f.text_field :body %>
+  </div>
+  <%= f.submit "Send" %>
+<% end %>
+</section>

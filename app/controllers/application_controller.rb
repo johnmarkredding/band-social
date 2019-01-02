@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :set_logged_in_user
 
   def welcome
+    @posts = Post.all.sort_by {|p| p.created_at}.reverse
   end
 
   def login(user)
@@ -13,6 +14,12 @@ class ApplicationController < ActionController::Base
     flash[:errors] ||= []
     flash[:errors] << message
   end
+
+  def reject_auth
+    add_error_message("Not Authorized!")
+    redirect_to home_path
+  end
+
 
   private
 

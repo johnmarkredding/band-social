@@ -1,0 +1,6 @@
+<% if !@posts.empty? %>
+<section>
+  <h2>Posts <%= link_to "+", new_user_post_path(@logged_in_user), class: "button-add" %></h2>
+  <%= render "./posts/posts" %>
+</section>
+<% end %>

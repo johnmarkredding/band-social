@@ -1,0 +1,10 @@
+<ul class="posts">
+  <% if !@posts.empty? %>
+    <% @posts.each do |post| %>
+      <li class="post">
+        <h4><%= link_to post.user.full_handle, user_path(post.user) %></h4>
+        <p><%= post.body %></p>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

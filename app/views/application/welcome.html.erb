@@ -1,7 +1,10 @@
+<h1>Home</h1>
+<section>
+  <h2>Posts <% if !!@logged_in_user %><%= link_to "+", new_user_post_path(@logged_in_user), class: "button-add" %><% end %></h2>
+  <%= render "./posts/posts" %>
+</section>
 <% if !!@logged_in_user %>
-<p><%= link_to "Musicians", users_path %></p>
+<p><%= link_to "Users", users_path %></p>
 <p><%= link_to "Bands", bands_path %></p>
-<p><!%= link_to "Venues", venues_path %></p>
-
-<p><%= link_to "New Band?", new_band_path %></p>
+<p><%= link_to "Conversations", conversations_path %></p>
 <% end %>

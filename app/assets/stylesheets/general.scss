@@ -1,0 +1,102 @@
+html {
+  background-color: $black;
+  font-family: $font-body;
+  font-size: $font-size-base;
+  color: $white;
+  line-height: 1.2;
+}
+
+body {
+  font: inherit;
+  max-width: 30rem;
+  margin: auto;
+  padding-bottom: 6rem
+}
+
+a {
+  font: inherit;
+  color: inherit;
+  &:active {
+    color: $grey;
+  }
+  &:visited {
+    color: inherit;
+  }
+}
+
+
+body > h1,
+body > h2,
+body > h3,
+body > h4,
+body > h5,
+body > h6,
+body > nav,
+body > ul,
+section > h2 {
+  margin-left: 1.1rem;
+  margin-right: 1.1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-heading;
+  line-height: 1;
+}
+h1 {
+  margin-top: 1.6rem;
+  margin-bottom: 2.2rem;
+  font-size: 4rem;
+  font-weight: 100;
+  font-style: italic;
+  color: $copper;
+}
+h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: $green;
+  overflow: hidden;
+  &.name {
+    font-weight: 700;
+    color: $white;
+  }
+}
+h3 {
+  font-size: 2rem;
+  font-weight: 200;
+  line-height: 1.2;
+  color: $green-light;
+}
+h4 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: $green;
+  margin-bottom: .75rem;
+}
+h5 {font-size: 0.75rem;}
+h6 {font-size: 0.5rem;}
+
+section {
+  margin-top: 2.2rem;
+  color: $green;
+  ul {
+    list-style: none;
+    li {
+      line-height: inherit;
+    }
+  }
+}
+ul {
+  li {
+    padding: 1.1rem;
+    border-bottom: 1px solid $grey;
+    &:last-of-type {
+      border-bottom: 0;
+    }
+  }
+}

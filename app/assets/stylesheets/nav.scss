@@ -1,23 +1,33 @@
 nav {
+  a ~ a, a ~ form {
+    margin-left: .75rem;
+  }
+  vertical-align: baseline;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 1.1rem;
+  color: $green-light;
   a, a:visited {
+    font: inherit;
     text-decoration: none;
-    color: blue;
-    &:active {
-      color: black;
-    }
+  }
+  a[href^="/sessions/new"] {
+    float: right;
+    color: $green
   }
   form {
+    float: right;
     display: inline-block;
-    input[type="submit"] {
-      display: inline;
+    input {
+      cursor: pointer;
+      vertical-align: baseline;
+      color: $green;
       border: 0;
       margin: 0;
       padding: 0;
-      font: inherit;
       background: 0;
-      color: blue;
       &:active {
-        color: black;
+        color: $grey;
       }
     }
   }

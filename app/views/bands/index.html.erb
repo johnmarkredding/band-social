@@ -1,9 +1,13 @@
 <h1>Bands</h1>
-<ul>
-<% @bands.each do |band| %>
-  <li>
-    <p><%= link_to band.name, band_path(band) %></p>
-    <p><%= band.description %></p>
-  </li>
-<% end %>
-</ul>
+
+<section>
+  <h2><%= link_to "+", new_band_path, class: "button-add" %></h2>
+  <ul class="bands">
+    <% @bands.each do |band| %>
+      <li class="band">
+        <h4>Manager: <%= link_to band.manager.full_handle, user_path(band.manager) %></h4>
+        <p><%= link_to band.name, band_path(band) %></p>
+      </li>
+    <% end %>
+  </ul>
+</section>

@@ -1,0 +1,15 @@
+ul.posts, ul.messages, ul.bands {
+  li.post, li.message, li.band {
+    padding: 1.1rem;
+    a:active {
+      color: $grey;
+    }
+  }
+  li.post {
+    color: $black;
+    background-color: $white;
+    p + p {
+      margin-top: 0.25rem;
+    }
+  }
+}

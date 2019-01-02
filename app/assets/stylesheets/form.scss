@@ -1,0 +1,47 @@
+ul + form, form.stand-alone  {
+  border-top: 0.33rem $copper solid;
+  div + div {
+    border-top: 1px $grey solid;
+  }
+  div {
+    overflow: auto;
+    background-color: $white;
+    padding: 1.1rem;
+    input, textarea {
+      margin: 0;
+      border: 0;
+      background: 0;
+      padding: 0;
+    }
+    input[type="text"], textarea {
+      font: inherit;
+      padding-left: .25rem;
+      max-width: 100%;
+      width: 100%;
+      outline: 0;
+      background: 0;
+      border: 0;
+      border-left: 2px solid $grey;
+      &:focus {
+        border-left-color: $copper;
+      }
+    }
+  }
+  div + input[type="submit"] {
+    border: 0;
+    margin: 0;
+    background: 0;
+    padding: 1.1rem;
+    padding-top: 0.66rem;
+    padding-bottom: 0.66rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    width: 100%;
+    background-color: $grey-dark;
+    color: $white;
+    border-bottom: 2px $copper solid;
+    &:active {
+      background-color: $green;
+    }
+  }
+}

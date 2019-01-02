@@ -1,3 +1,37 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+section a:active, section input:active {
+  color: $white;
+}
+
+h3 + section {
+  margin-top: 3.5rem;
+}
+section > div, section > ul, section > h2 + form {
+  background-color: $grey-dark;
+  margin-top: 0.75rem;
+  border-top: 0.33rem $copper solid;
+}
+section > div {
+  padding: 1.1rem;
+  overflow: auto;
+  p > a {
+    display: block;
+    float: left;
+  }
+  p > a + a {
+    float: right;
+  }
+  p + form {
+    clear: both;
+    display: block;
+    padding-top: 0.75rem;
+    input {
+      padding: 0;
+      margin: 0;
+      border: 0;
+      background: 0;
+      cursor: pointer;
+      font: inherit;
+      color: inherit;
+    }
+  }
+}

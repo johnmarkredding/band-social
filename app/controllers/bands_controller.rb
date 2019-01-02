@@ -21,14 +21,16 @@ class BandsController < ApplicationController
   end
 
   def show
-    # @members = @requested_band.members
-      @members = ["1", "2", "3"]
+    @posts = @requested_band.posts[0...5]
+    @memberships = @requested_band.memberships
   end
 
   def edit
+    require_auth
   end
 
   def update
+    require_auth
     if @requested_band.update(band_params)
       redirect_to band_path(@requested_band)
     else
@@ -38,15 +40,21 @@ class BandsController < ApplicationController
   end
 
   def destroy
+    require_auth
     @requested_band.destroy
     redirect_to home_path
   end
-
 
   private
 
   def set_requested_band
     @requested_band = Band.find(params[:id])
+  end
+
+  def require_auth
+    unless @requested_band.manager == @logged_in_user || @logged_in_user.admin?
+      reject_auth
+    end
   end
 
   def band_params

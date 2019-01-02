@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_requested_user, only: [:show, :edit, :update, :destroy]
   before_action :require_auth, only: [:edit, :update, :destroy]
+  before_action :require_logged_in, only: [:show]
 
   def show
-  end
-
-  def edit
-    @roles = ["user","admin"]
+    @bands = (@requested_user.bands + @requested_user.managed_bands).uniq
+    @posts = @requested_user.posts
   end
 
   def new
@@ -29,6 +28,10 @@ class UsersController < ApplicationController
       flash.now[:errors] = @new_user.errors.full_messages
       render :new
     end
+  end
+
+  def edit
+    @roles = ["user","admin"]
   end
 
   def update
@@ -66,19 +69,20 @@ class UsersController < ApplicationController
     end
   end
 
-  def reject_auth
-    add_error_message("Not Authorized!")
-    redirect_to home_path
-  end
-
   def require_auth
-    unless @requested_user == @logged_in_user || @logged_in_user.admin?
+    unless !!@logged_in_user && (@requested_user == @logged_in_user || @logged_in_user.admin?)
+      reject_auth
+    end
+  end
+  def require_logged_in
+    unless !!@logged_in_user
       reject_auth
     end
   end
 
   def require_admin_auth
     unless @logged_in_user.admin?
+      
       reject_auth
     end
   end
