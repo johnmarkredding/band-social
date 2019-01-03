@@ -4,6 +4,20 @@ section ul.bands {
     color: $white;
   }
 }
+section ul.members {
+  li.member p {
+    font-size: 1.6rem;
+    color: $white;
+    a:last-of-type {
+      vertical-align: middle;
+      float: right;
+    }
+  }
+}
+
+h3 + p {
+  margin-top: 0.75rem;
+}
 
 section > h2 + form {
   margin-top: 0.75rem;

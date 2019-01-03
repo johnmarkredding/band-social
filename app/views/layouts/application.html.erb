@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
@@ -13,10 +13,10 @@
       <%= link_to "Home", home_path  %>
       <% if !!@logged_in_user %>
         <%= link_to "Profile", user_path(@logged_in_user) %>
-        <%= render "./layouts/logout" %>
+        <%= link_to "Logout", "/sessions/#{session.id}", method: :delete %>
       <% else %>
-        <%= link_to "Login", new_session_path  %>
         <%= link_to "Sign Up", new_user_path  %>
+        <%= link_to "Login", new_session_path  %>
       <% end %>
     </nav>
     <%= render "./layouts/errors" %>

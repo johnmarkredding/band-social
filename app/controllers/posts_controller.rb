@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_requested_user, only: [:index]
+
   def index
     @posts = User.find(params[:user_id]).posts
   end
@@ -20,6 +22,15 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def set_requested_user
+    if !!params[:user_id] && User.exists?(params[:user_id])
+      @requested_user = User.find(params[:user_id])
+    else
+      add_error_message("Invalid User")
+      redirect_to users_path
+    end
+  end
 
   def post_params
     params.permit(:body, :user_id)

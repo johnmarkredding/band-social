@@ -1,4 +1,4 @@
-<h1><%= "#{@conversation.sender.username} & #{@conversation.receiver.username}" %></h1>
+<h1><%= @conversation.sender.username %><span class="accent"> & </span><%= @conversation.receiver.username %></h1>
 
 <section>
 
@@ -6,7 +6,7 @@
   <% @messages.each do |message| %>
     <li class="message <%= message.user == @logged_in_user ? "message-sent": "message-received" %>">
       <h4 class="message-heading"><%= link_to message.user.full_handle, user_path(message.user) %></h4>
-      <%= message.body %>
+      <p><%= message.body %></p>
     </li>
   <% end %>
 </ul>

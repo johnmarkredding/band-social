@@ -13,9 +13,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    unless !!@logged_in_user
-      reject_auth
-    end
     @users = User.all
   end
 
@@ -76,13 +73,12 @@ class UsersController < ApplicationController
   end
   def require_logged_in
     unless !!@logged_in_user
-      reject_auth
+      reject_auth("Please Login.")
     end
   end
 
   def require_admin_auth
     unless @logged_in_user.admin?
-      
       reject_auth
     end
   end

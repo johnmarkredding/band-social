@@ -7,4 +7,23 @@
 @import "bands";
 @import "buttons";
 @import "form";
-// @import "footer"
+
+
+.success, .errors {
+  list-style: none;
+  border-left-width: 6px;
+  border-left-style: solid;
+  border-radius: 6px;
+  li {
+    padding-left: calc(1.1rem - 6px);
+  }
+}
+.errors {
+  border-color: $copper;
+  background-color: $red;
+}
+.success {
+  background-color: $green-light;
+  color: $black;
+  border-color: $green;
+}

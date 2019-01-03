@@ -11,10 +11,17 @@ nav {
     font: inherit;
     text-decoration: none;
   }
-  a[href^="/sessions/new"] {
+  a[href^="/sessions"] {
     float: right;
-    color: $green
+    color: $green;
+    &:hover {
+      color: $grey-light;
+    }
+    &:active {
+      color: $grey;
+    }
   }
+
   form {
     float: right;
     display: inline-block;
@@ -26,9 +33,6 @@ nav {
       margin: 0;
       padding: 0;
       background: 0;
-      &:active {
-        color: $grey;
-      }
     }
   }
 }

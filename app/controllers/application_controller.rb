@@ -15,8 +15,8 @@ class ApplicationController < ActionController::Base
     flash[:errors] << message
   end
 
-  def reject_auth
-    add_error_message("Not Authorized!")
+  def reject_auth(message = "Not Authorized!")
+    add_error_message(message)
     redirect_to home_path
   end
 

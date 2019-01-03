@@ -1,11 +1,17 @@
 <h1>Conversations</h1>
-<%= form_with url: conversations_path, method: 'POST', local: true, class: 'form-static' do |f| %>
+
+<section>
+  <ul>
+    <% @conversations.each do |conversation| %>
+      <li><%= link_to (conversation.sender == @logged_in_user ? conversation.receiver.handle : conversation.sender.handle), conversation_messages_path(conversation)  %></li>
+    <% end %>
+  </ul>
+  <%= form_with url: conversations_path, method: 'POST', local: true, class: 'form-static' do |f| %>
   <%= f.hidden_field :sender_id, value: @logged_in_user.id %>
-  <%= f.collection_select :receiver_id, @users, :id, :full_handle %>
-  <%= f.submit "Start Conversation" %>
-<% end %>
-<ul>
-  <% @conversations.each do |conversation| %>
-    <li><%= link_to "#{conversation.sender.username} - #{conversation.receiver.username}", conversation_messages_path(conversation)  %></li>
+    <div>
+    <%= f.label :receiver_id, "Select Friend"%>
+    <%= f.collection_select :receiver_id, @users, :id, :handle %>
+    </div>
+    <%= f.submit "Start New" %>
   <% end %>
-</ul>
+</section>

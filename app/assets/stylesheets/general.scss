@@ -13,17 +13,23 @@ body {
   padding-bottom: 6rem
 }
 
+p {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
 a {
   font: inherit;
   color: inherit;
+  &:hover {
+    color: $grey-light;
+  }
   &:active {
     color: $grey;
   }
-  &:visited {
-    color: inherit;
-  }
-}
 
+}
 
 body > h1,
 body > h2,
@@ -32,7 +38,6 @@ body > h4,
 body > h5,
 body > h6,
 body > nav,
-body > ul,
 section > h2 {
   margin-left: 1.1rem;
   margin-right: 1.1rem;
@@ -61,10 +66,6 @@ h2 {
   line-height: 1.2;
   color: $green;
   overflow: hidden;
-  &.name {
-    font-weight: 700;
-    color: $white;
-  }
 }
 h3 {
   font-size: 2rem;
@@ -94,9 +95,49 @@ section {
 ul {
   li {
     padding: 1.1rem;
-    border-bottom: 1px solid $grey;
+    border-bottom: 1px solid $grey-light;
     &:last-of-type {
       border-bottom: 0;
     }
   }
+}
+
+span.accent {
+  color: $white;
+}
+
+h2 {
+  &:hover, &:active {
+    a {
+      color: $white;
+    }
+    hr {
+      width: 35%;
+      background-color: $grey-dark;
+    }
+  }
+  a {
+    transition: .5s;
+  }
+  hr {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    transition: .5s;
+    width: 15%;
+    height: 2px;
+    background-color: $grey-light;
+    margin-top: 0.25rem;
+  }
+}
+body > p {
+  margin-left: 1.1rem;
+  margin-right: 1.1rem;
+}
+p.name {
+  line-height: 1.2;
+  font-weight: 400;
+  font-size: 3.5rem;
+  color: $white;
 }

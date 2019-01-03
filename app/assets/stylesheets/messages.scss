@@ -1,8 +1,6 @@
-.message-sent {
-  background-color: $grey-light;
-  color: $black;
+li.message-sent {
+  background-color: $grey-dark;
 }
-.message-received {
-  background-color: $white;
-  color: $black;
+li.message-received {
+  background-color: $grey;
 }

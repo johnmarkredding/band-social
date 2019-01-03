@@ -20,4 +20,8 @@ class User < ApplicationRecord
   def full_handle
     "#{self.name} | @#{self.username}"
   end
+
+  def handle
+    "@#{self.username}"
+  end
 end

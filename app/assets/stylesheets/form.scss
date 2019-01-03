@@ -1,7 +1,10 @@
-ul + form, form.stand-alone  {
+form {
+  input, select, textarea {
+    background-color: $grey-lightest;
+  }
   border-top: 0.33rem $copper solid;
   div + div {
-    border-top: 1px $grey solid;
+    border-top: 1px $grey-light solid;
   }
   div {
     overflow: auto;
@@ -10,20 +13,46 @@ ul + form, form.stand-alone  {
     input, textarea {
       margin: 0;
       border: 0;
-      background: 0;
       padding: 0;
     }
-    input[type="text"], textarea {
+    input[type="text"], input[type="password"], textarea {
+      outline: 0;
+      border: 0;
       font: inherit;
+      padding: .33rem;
       padding-left: .25rem;
       max-width: 100%;
       width: 100%;
-      outline: 0;
-      background: 0;
-      border: 0;
-      border-left: 2px solid $grey;
+      border-left: 2px solid $grey-light;
       &:focus {
-        border-left-color: $copper;
+        border-color: $copper;
+      }
+    }
+    label {
+      display: block;
+    }
+    select {
+      -webkit-border-radius: 0;
+      -webkit-box-shadow: 0;
+      -webkit-padding-end: 0;
+      -webkit-user-select: none;
+      -webkit-appearance: button;
+      outline: 0;
+      border: 0;
+      display: block;
+      font: inherit;
+      max-width: 100%;
+      width: 40%;
+      padding: .33rem;
+      margin: auto;
+      -webkit-padding-start: .25rem;
+      background-image: url(select-arrow.png);
+      background-position: 95% center;
+      background-repeat: no-repeat;
+      background-size: auto;
+      border-left: 2px solid $grey-light;
+      &:focus {
+        border-color: $copper;
       }
     }
   }
@@ -37,9 +66,12 @@ ul + form, form.stand-alone  {
     font-size: 1.5rem;
     font-weight: 400;
     width: 100%;
-    background-color: $grey-dark;
+    background-color: $grey;
     color: $white;
     border-bottom: 2px $copper solid;
+    &:hover {
+      background-color: $grey-dark;
+    }
     &:active {
       background-color: $green;
     }

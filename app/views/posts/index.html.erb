@@ -1,6 +1,11 @@
+<h1><%= @requested_user.handle %>’s Posts</h1>
 <% if !@posts.empty? %>
 <section>
-  <h2>Posts <%= link_to "+", new_user_post_path(@logged_in_user), class: "button-add" %></h2>
+  <% if @requested_user == @logged_in_user %>
+    <h2>Posts
+      <%= link_to "+", new_user_post_path(@logged_in_user), class: "button-add" %>
+    </h2>
+  <% end %>
   <%= render "./posts/posts" %>
 </section>
 <% end %>
