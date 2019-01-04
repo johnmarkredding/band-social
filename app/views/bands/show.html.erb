@@ -2,35 +2,6 @@
 <p class="name"><%= @requested_band.name %></p>
 <h3>Manager | <%= @requested_band.manager.handle %></h3>
 <p><%= @requested_band.description %></p>
-<section>
-  <h2>Members</h2>
-  <ul class="members">
-    <% @memberships.each do |membership| %>
-    <li class="member">
-      <h4><%= @requested_band.get_roles_string(membership.member) %></h4>
-      <p>
-        <%= link_to membership.member.handle, user_path(membership.member) %>
-        <%= link_to "×", membership_path(membership), method: "delete", title: "Remove User" %>
-      </p>
-    </li>
-    <% end %>
-  </ul>
-  <% if @requested_band.manager == @logged_in_user || @requested_band.members.include?(@logged_in_user) %>
-    <%= form_with url: memberships_path, class:'form-static', local: true do |f|%>
-    <%= f.hidden_field :band_id, value: "#{@requested_band.id}" %>
-    <div>
-      <h4><%= f.label :member_username, "Add Member" %></h4>
-      <%= f.text_field :member_username, placeholder: "Type in username", required: true %>
-    </div>
-    <%= f.submit "Add" %>
-    <% end %>
-  <% end %>
-</section>
-
-<section>
-  <h2>Recent Posts</h2>
-  <%= render "./posts/posts" %>
-</section>
 
 <% if @requested_band.manager == @logged_in_user || @logged_in_user.admin? %>
   <section>
@@ -43,3 +14,35 @@
     </div>
   </section>
 <% end %>
+
+<section>
+  <h2>Members</h2>
+  <ul class="members">
+    <% @memberships.each do |membership| %>
+    <li class="member">
+      <h4><%= @requested_band.get_roles_string(membership.member) %></h4>
+      <p>
+        <%= link_to membership.member.handle, user_path(membership.member) %>
+        <% if @requested_band.manager == @logged_in_user || @requested_band.members.include?(@logged_in_user) %>
+          <%= link_to "×", membership_path(membership), method: "delete", title: "Remove User" %>
+        <% end %>
+      </p>
+    </li>
+    <% end %>
+  </ul>
+  <% if @requested_band.manager == @logged_in_user || @requested_band.members.include?(@logged_in_user) %>
+    <%= form_with url: memberships_path, class:'form-static', local: true do |f|%>
+      <%= f.hidden_field :band_id, value: "#{@requested_band.id}" %>
+      <div>
+        <h4><%= f.label :member_username, "Add Member" %></h4>
+        <%= f.text_field :member_username, placeholder: "Type in username", required: true %>
+      </div>
+      <%= f.submit "Add" %>
+    <% end %>
+  <% end %>
+</section>
+
+<section>
+  <h2>Recent Posts</h2>
+  <%= render "./posts/posts" %>
+</section>

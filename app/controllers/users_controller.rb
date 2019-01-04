@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
+  before_action :require_logged_in, only: [:show, :index]
   before_action :set_requested_user, only: [:show, :edit, :update, :destroy]
   before_action :require_auth, only: [:edit, :update, :destroy]
-  before_action :require_logged_in, only: [:show]
 
   def show
     @bands = (@requested_user.bands + @requested_user.managed_bands).uniq
@@ -69,11 +69,6 @@ class UsersController < ApplicationController
   def require_auth
     unless !!@logged_in_user && (@requested_user == @logged_in_user || @logged_in_user.admin?)
       reject_auth
-    end
-  end
-  def require_logged_in
-    unless !!@logged_in_user
-      reject_auth("Please Login.")
     end
   end
 

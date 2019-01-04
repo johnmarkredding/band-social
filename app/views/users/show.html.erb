@@ -1,19 +1,24 @@
 <h1>Profile</h1>
 <p class="name"><%= @requested_user.name %></p>
 <h3>@<%= @requested_user.username %></h3>
-
+<% if @requested_user == @logged_in_user || @logged_in_user.admin? %>
+<section>
+  <h2>Settings</h2>
+  <div>
+    <p>
+      <%= link_to "Edit Profile", edit_user_path %>
+      <%= link_to "Delete Account", user_path(@requested_user), method: :delete, class: 'button-caution'%>
+    </p>
+  </div>
+</section>
 <section>
   <h2>
     <%= link_to "Conversations", conversations_path %>
     <hr>
   </h2>
 </section>
-<section>
-  <h2>
-    <%= link_to "Posts", user_posts_path(@logged_in_user) %>
-    <hr>
-  </h2>
-</section>
+<% end %>
+
 
 <% if !@bands.empty? %>
   <section>
@@ -42,18 +47,3 @@
     <%= render "./posts/posts" %>
   <% end %>
 </section>
-
-<% if @requested_user == @logged_in_user || @logged_in_user.admin? %>
-<section>
-  <h2>Settings</h2>
-  <div>
-    <p>
-      <%= link_to "Edit Profile", edit_user_path %>
-      <%= link_to "Change Password", edit_user_path, class: "" %>
-    </p>
-    <p>
-      <%= link_to "Delete Account", user_path(@requested_user), method: :delete, class: 'button-caution'%>
-    </p>
-  </div>
-</section>
-<% end %>

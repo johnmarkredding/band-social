@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  before_action :require_logged_in, only: [:index, :create]
+
   def index
     @conversation = Conversation.find(params[:conversation_id])
     @messages = @conversation.messages

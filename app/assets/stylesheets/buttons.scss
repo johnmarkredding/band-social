@@ -7,4 +7,10 @@ h2 a.button-add {
   line-height: .875;
   color: $green-light;
   float: right;
+  &:active {
+    color: $grey-dark;
+  }
+  &:hover {
+    color: $green;
+  }
 }

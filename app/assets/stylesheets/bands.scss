@@ -8,7 +8,7 @@ section ul.members {
   li.member p {
     font-size: 1.6rem;
     color: $white;
-    a:last-of-type {
+    a + a {
       vertical-align: middle;
       float: right;
     }

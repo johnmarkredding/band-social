@@ -3,7 +3,6 @@ class User < ApplicationRecord
   has_many :memberships, foreign_key: 'member_id', dependent: :destroy
   has_many :bands, through: :memberships
   has_many :conversations, dependent: :destroy, foreign_key: 'sender_id'
-  has_many :conversations, dependent: :destroy, foreign_key: 'sender_id'
   has_many :posts, dependent: :destroy
 
   validates_presence_of :name
@@ -23,5 +22,17 @@ class User < ApplicationRecord
 
   def handle
     "@#{self.username}"
+  end
+  def friends
+    members = []
+    self.bands.map do |band|
+      byebug
+      members << band.members
+      members << band.manager
+    end
+    self.managed_bands do |band|
+      members << band.members
+    end
+    members.flatten!.uniq!
   end
 end

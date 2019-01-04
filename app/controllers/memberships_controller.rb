@@ -1,4 +1,5 @@
 class MembershipsController < ApplicationController
+  before_action :require_logged_in, only: [:create, :destroy]
 
   def create
     band = Band.find(params[:band_id])
@@ -24,8 +25,12 @@ class MembershipsController < ApplicationController
   def destroy
     membership = Membership.find(params[:id])
     band = membership.band
-    membership.destroy
-    redirect_to band_path(band)
+    unless band.manager == @logged_in_user || band.members.include?(@logged_in_user)
+      reject_auth
+    else
+      membership.destroy
+      redirect_to band_path(band)
+    end
   end
 
   private

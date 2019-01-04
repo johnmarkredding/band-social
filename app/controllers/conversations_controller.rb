@@ -1,8 +1,10 @@
 class ConversationsController < ApplicationController
-  before_action :require_auth
+  before_action :require_logged_in, only: [:index, :create]
+
   def index
+    @users = @logged_in_user.friends
+    # @users = User.all
     @conversations = Conversation.where("sender_id = ? OR receiver_id = ?", @logged_in_user.id, @logged_in_user.id)
-    @users = User.where.not(id: @logged_in_user.id)
   end
 
   def create
@@ -13,12 +15,6 @@ class ConversationsController < ApplicationController
   end
 
   private
-
-  def require_auth
-    unless !!@logged_in_user
-      reject_auth
-    end
-  end
 
   def conversation_params
     params.permit(:sender_id, :receiver_id)

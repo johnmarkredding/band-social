@@ -8,15 +8,15 @@
       <h4><%= f.label :username %></h4>
       <%= f.text_field :username, required: true %>
     </div>
-    <% if @logged_in_user != @requested_user && @logged_in_user.admin? %>
-      <%= f.label :role %>
-      <%= f.collection_select :role, @roles, :to_s, :to_s %>
-    <% end %>
+    <div>
+      <% if @logged_in_user != @requested_user && @logged_in_user.admin? %>
+        <%= f.label :role %>
+        <%= f.collection_select :role, @roles, :to_s, :to_s %>
+      <% else %>
+        <h4><%= f.label :password %></h4>
+        <%= f.password_field :password, required: true %>
+      <% end %>
+    </div>
     <%= f.submit %>
   <% end %>
 </section>
-
-<%# <% if @logged_in_user == @requested_user %>
-  <%# <%= f.label :password %>
-  <%# <%= f.password_field :password, required: true %>
-<%# <% end %>

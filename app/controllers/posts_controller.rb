@@ -1,14 +1,12 @@
 class PostsController < ApplicationController
-  before_action :set_requested_user, only: [:index]
+  before_action :set_requested_user, only: [:index, :new]
+  before_action :require_logged_in, only: [:new, :create]
+
 
   def index
     @posts = User.find(params[:user_id]).posts
   end
   def new
-    unless !!@logged_in_user
-      add_error_message("Must be logged in!")
-      redirect_to home_path
-    end
   end
   def create
     if !!@logged_in_user

@@ -4,6 +4,10 @@ html {
   font-size: $font-size-base;
   color: $white;
   line-height: 1.2;
+  transition: .2s;
+}
+* {
+  transition: inherit;
 }
 
 body {

@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   def welcome
     @posts = Post.all.sort_by {|p| p.created_at}.reverse
+    @users = User.all
   end
 
   def login(user)
@@ -20,6 +21,11 @@ class ApplicationController < ActionController::Base
     redirect_to home_path
   end
 
+  def require_logged_in
+    unless !!@logged_in_user
+      reject_auth("Please Login.")
+    end
+  end
 
   private
 
