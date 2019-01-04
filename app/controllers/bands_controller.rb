@@ -24,6 +24,7 @@ class BandsController < ApplicationController
   def show
     @posts = @requested_band.posts[0...5]
     @memberships = @requested_band.memberships
+    @memberships = @memberships.to_a
   end
 
   def edit

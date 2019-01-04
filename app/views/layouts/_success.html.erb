@@ -2,4 +2,8 @@
   <ul class="success">
     <li><%= flash[:success] %></li>
   </ul>
+<% elsif flash.now[:success] %>
+  <ul class="success">
+    <li><%= flash.now[:success] %></li>
+  </ul>
 <% end %>

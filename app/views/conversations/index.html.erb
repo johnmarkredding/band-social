@@ -9,7 +9,7 @@
   <%= form_with url: conversations_path, method: 'POST', local: true, class: 'form-static' do |f| %>
     <%= f.hidden_field :sender_id, value: @logged_in_user.id %>
     <div>
-    <%= f.label :receiver_id, "Select Friend"%>
+    <h4><%= f.label :receiver_id, "#{@message}"%></h4>
     <%= f.collection_select :receiver_id, @users, :id, :username %>
     </div>
     <%= f.submit "Start New" %>

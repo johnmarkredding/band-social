@@ -1,6 +1,6 @@
 <h1>Band Page</h1>
 <p class="name"><%= @requested_band.name %></p>
-<h3>Manager | <%= @requested_band.manager.handle %></h3>
+<h3>Manager | <%= link_to @requested_band.manager.handle, user_path(@requested_band.manager) %></h3>
 <p><%= @requested_band.description %></p>
 
 <% if @requested_band.manager == @logged_in_user || @logged_in_user.admin? %>
@@ -18,16 +18,28 @@
 <section>
   <h2>Members</h2>
   <ul class="members">
-    <% @memberships.each do |membership| %>
-    <li class="member">
-      <h4><%= @requested_band.get_roles_string(membership.member) %></h4>
-      <p>
-        <%= link_to membership.member.handle, user_path(membership.member) %>
-        <% if @requested_band.manager == @logged_in_user || @requested_band.members.include?(@logged_in_user) %>
-          <%= link_to "×", membership_path(membership), method: "delete", title: "Remove User" %>
-        <% end %>
-      </p>
-    </li>
+    <% if !@memberships.empty? %>
+      <% @memberships.each do |membership| %>
+        <li class="member">
+          <h4><%= @requested_band.get_roles_string(membership.member) %></h4>
+          <p>
+            <%= link_to membership.member.handle, user_path(membership.member) %>
+            <% if @requested_band.manager == @logged_in_user || @requested_band.members.include?(@logged_in_user) %>
+              <%= link_to "×", membership_path(membership), method: "delete", title: "Remove User" %>
+            <% end %>
+          </p>
+        </li>
+      <% end %>
+    <% else %>
+      <li class="member">
+        <h4>No Members Here!</h4>
+        <p>
+          No Members! ☹️
+        </p>
+        <p>
+          You can Message <%= @requested_band.manager.handle %> to join this band.
+        </p>
+      </li>
     <% end %>
   </ul>
   <% if @requested_band.manager == @logged_in_user || @requested_band.members.include?(@logged_in_user) %>

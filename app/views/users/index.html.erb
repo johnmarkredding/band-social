@@ -1,7 +1,18 @@
 <h1>Users</h1>
 <section>
-  <%= form_with url: "" do |f| %>
-
+  <h2>
+    <% if !params[:q] %>
+      Find a User
+    <% else %>
+      <%= link_to "← Return to Users", users_path %>
+    <% end %>
+  </h2>
+  <%= form_with url: users_path, method: :get, local: true do |f| %>
+    <div>
+      <h4><%= f.label :q, "Search by Name or Username" %></h4>
+      <%= f.text_field :q, autofocus: true %>
+    </div>
+    <%= f.submit "Search" %>
   <% end %>
   <%= render 'users' %>
 </section>

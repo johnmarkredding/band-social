@@ -1,4 +1,4 @@
-<h1><%= @conversation.sender.username %><span class="accent"> & </span><%= @conversation.receiver.username %></h1>
+<h1><%= @conversation.sender.handle %><span class="accent"> & </span><%= @conversation.receiver.handle %></h1>
 
 <section>
 
@@ -13,7 +13,7 @@
 <%= form_with url: conversation_messages_path(@conversation), method: 'POST', local: true do |f| %>
   <div>
     <h4><%= f.label :body, "New Message" %></h4>
-    <%= f.text_field :body %>
+    <%= f.text_field :body, autofocus: true %>
   </div>
   <%= f.submit "Send" %>
 <% end %>

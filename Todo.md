@@ -24,5 +24,3 @@
 ## Issue Tracker
 
 - Refactor auth functions.
-- Add search to users page.
-- Friends by band membership.

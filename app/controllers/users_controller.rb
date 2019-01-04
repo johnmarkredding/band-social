@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-  before_action :require_logged_in, only: [:show, :index]
+  before_action :require_logged_in, only: [:show, :index, :search]
   before_action :set_requested_user, only: [:show, :edit, :update, :destroy]
   before_action :require_auth, only: [:edit, :update, :destroy]
 
   def show
-    @bands = (@requested_user.bands + @requested_user.managed_bands).uniq
+    @bands = @requested_user.all_bands
     @posts = @requested_user.posts
   end
 
@@ -13,7 +13,18 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    accuracy = 50
+    if !!params[:q]
+      @users = User.all.select do |user|
+        params[:q].similar(user.username) >= accuracy || params[:q].similar(user.name.split.first) >= accuracy || params[:q].similar(user.name.split.last) >= accuracy
+      end
+      if @users.empty?
+        add_error_message("No Results")
+        redirect_to users_path
+      end
+    else
+      @users = User.all
+    end
   end
 
   def create
@@ -23,6 +34,7 @@ class UsersController < ApplicationController
       redirect_to user_path(@new_user)
     else
       flash.now[:errors] = @new_user.errors.full_messages
+      @requested_user = User.new
       render :new
     end
   end

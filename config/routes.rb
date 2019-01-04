@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:index, :create]
   end
 
+
   root "application#welcome", as: "home"
-  get "/sessions", to: "sessions#new"
+
+  get "/sessions", to: "sessions#new", as: "login"
 end

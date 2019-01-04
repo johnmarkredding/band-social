@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates_presence_of :password_digest
   validates_presence_of :username
   validates_uniqueness_of :username
+  validates :password, length: { minimum: 5 }, allow_nil: true
 
   has_secure_password
 
@@ -23,16 +24,23 @@ class User < ApplicationRecord
   def handle
     "@#{self.username}"
   end
+
+  def all_bands
+    (self.bands + self.managed_bands).uniq
+  end
+
   def friends
-    members = []
-    self.bands.map do |band|
-      byebug
-      members << band.members
-      members << band.manager
+    if !!self.all_bands
+      members = []
+      self.all_bands.map do |band|
+        members += band.members.to_a
+        members << band.manager
+      end
+      members.delete(self)
+      members.uniq!
+      members
+    else
+      false
     end
-    self.managed_bands do |band|
-      members << band.members
-    end
-    members.flatten!.uniq!
   end
 end
