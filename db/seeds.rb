@@ -2,7 +2,13 @@ User.destroy_all
 Band.destroy_all
 Membership.destroy_all
 
-user = User.create(name: 'John', username: "johnny", password: "nice")
+user = User.new(name: 'John', username: "johnny", password: "nice!")
+
+if user.save
+  puts "Create User"
+else
+  puts "Create User Failed"
+end
 
 user_band = Band.new(name: 'Band #1', description: 'My first band', manager_id: user.id)
 
